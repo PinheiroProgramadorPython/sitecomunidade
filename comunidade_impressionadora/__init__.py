@@ -29,7 +29,7 @@ try:
     with app.app_context():
         if not inspector.has_table('usuario'):
             database.create_all()
-except Exception as erro:
-    print(f"Erro ao verificar/criar o banco: {erro}")
+except:
+    print(f"Erro ao verificar/criar o banco")
         
 from comunidade_impressionadora import routes
