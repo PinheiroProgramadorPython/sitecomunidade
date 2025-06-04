@@ -21,16 +21,16 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'alert alert-info'
 
 
-# from comunidade_impressionadora import models
-# try:
-#     engine = sqlalchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
-#     inspector = sqlalchemy.inspect(engine)
+from comunidade_impressionadora import models
+try:
+    engine = sqlalchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
+    inspector = sqlalchemy.inspect(engine)
 
-#     with app.app_context():
-#         if not inspector.has_table('usuario'):
-#             database.create_all()
-# except Exception as erro:
-#     print(f"Erro ao verificar/criar o banco: {erro}")
+    with app.app_context():
+        if not inspector.has_table('usuario'):
+            database.create_all()
+except Exception as erro:
+    print(f"Erro ao verificar/criar o banco: {erro}")
 
         
 from comunidade_impressionadora import routes
