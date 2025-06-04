@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <h1 style="color:blue">Usuarios</h1>
+        {% for usuario in lista_usuarios %}
+            <div class="container mt-5 d-flex justify-content-center">
+                <div class="card p-3">
+                    <div class="d-flex align-items-center">
+                        <div class="image pe-2">
+                            <img src="{{ url_for('static', filename='foto_perfil/' ~ usuario.foto_perfil) }}" class="rounded" width="150">
+                        </div>
+                        <div class="card p-3" style="min-width: 300px; max-width: 100%; width: fit-content;">
+                            <h4 class="mb-0 mt-0" style="white-space: normal;">{{ usuario.username }}</h4>
+                            <span class="text-muted" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{usuario.email}}</span>
+                            <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                                <div class="d-flex flex-column">
+                                    <span class="articles">Cursos</span>
+                                    {% if 'Não Informado' in usuario.cursos %}
+                                        <span class="number1">0</span>
+                                    {% else %}
+                                        <span class="number1">{{ usuario.cursos.count(';') + 1 }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <span class="rating">Posts</span>
+                                    <span class="number3">{{ usuario.contar_posts() }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col col-4" style="text-align: center">
+                    <strong>Cursos</strong><br>
+                    {% for curso in usuario.cursos.split(';') %}
+                        <button type="button" class="btn btn-success mt-2">{{ curso }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row mt-5">
+    </div>
+{% endblock %}

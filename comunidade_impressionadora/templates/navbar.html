@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid container">
+    <a class="navbar-brand" href="{{url_for('home')}}">Comunidade Impressionadora</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav" style="background-color: #e3f2fd;" data-bs-theme="blue">
+        <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Inicio</a>
+        <a class="nav-link" href="{{url_for('contato')}}">Contato</a>
+        <a class="nav-link" href="{{url_for('usuarios')}}">Usuarios</a>
+      </div>
+    </div>
+    <div class="navbar-nav" style="background-color: #e3f2fd;" data-bs-theme="blue">
+      {% if current_user.is_authenticated %}
+        <a class="nav-link active" aria-current="page" href="{{url_for('perfil')}}">Meu Perfil</a>
+        <a class="nav-link active" aria-current="page" href="{{url_for('criarpost')}}">Criar Post</a>
+        <a class="nav-link active" aria-current="page" href="{{url_for('sair')}}">Sair</a>
+      {% else %}
+        <a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Login</a>
+        <a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Criar Conta</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
