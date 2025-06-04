@@ -29,7 +29,7 @@ try:
     with app.app_context():
         if not inspector.has_table('usuario'):
             database.create_all()
-except SQLAlchemyError as e:
-    print(f"Erro ao verificar/criar o banco: {e}")
+except Exception as erro:
+    print(f"Erro ao verificar/criar o banco: {erro}")
         
 from comunidade_impressionadora import routes
