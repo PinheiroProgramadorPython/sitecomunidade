@@ -22,14 +22,12 @@ login_manager.login_message_category = 'alert alert-info'
 
 
 from comunidade_impressionadora import models
-try:
-    engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
-    inspector = inspect(engine)
+engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
+inspector = inspect(engine)
 
-    with app.app_context():
-        if not inspector.has_table('usuario'):
-            database.create_all()
-except:
-    print(f"Erro ao verificar/criar o banco")
+with app.app_context():
+    if not inspector.has_table('usuario'):
+        database.create_all()
+
         
 from comunidade_impressionadora import routes
